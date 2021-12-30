@@ -1,0 +1,192 @@
+.frame {
+  margin: 10px 10px 0px;
+}
+
+.frame .row {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media only screen and (max-width: 768px) {
+  .frame .row {
+    display: inline;
+  }
+}
+
+.frame .moniter {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.frame .active {
+  background-color: #3399DB;
+  color: #fff;
+}
+
+.frame .active img {
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+
+.frame .card {
+  cursor: pointer;
+  display: inline;
+  text-align: center;
+  margin: 8px;
+  padding: 10px;
+  width: 150px;
+  height: 72px;
+  font-size:11px !important;
+}
+
+.frame .card img {
+  width: 30px;
+}
+
+.frame .card a {
+  text-decoration: none;
+  color: #000;
+}
+
+.frame .screen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.frame .screen .time {
+  margin-right: 20px;
+}
+
+/*.frame .screen .time p {
+  font-size: 20px;
+}*/
+.frame .screen .time {
+  font-size: 20px;
+}
+
+.frame .session img {
+  background-color: #DC0202;
+  width: 30px;
+  padding: 5px;
+}
+
+.frame .session a {
+  color: #fff;
+  background-color: #DC0202;
+  padding: 7px 7px;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 4px;
+}
+
+.display .display-screen {
+  width: 100%;
+  height: 500px;
+  border: 10px solid #000;
+  border-radius: 10px;
+}
+
+.icons .row {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.icons .icon-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+.icons .icon-section img {
+  width: 40px;
+}
+
+.icons .icon-section .icon1 {
+  margin: 20px;
+  cursor:pointer;
+}
+
+.icons .icon-section .icon1 p {
+  font-size: 15px;
+  padding-top: 10px;
+}
+
+.icons .icon-section1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: -20px;
+}
+
+.icons .icon-section1 .icon2 {
+  border: dotted 1px;
+  padding: 5px 15px;
+}
+
+.icons .icon-section1 .icon2 a {
+  color: #000;
+  text-decoration: none;
+}
+
+.icons .icon-section1 .icon2 .drag-text {
+  text-align: center;
+}
+
+.icons .icon-section1 .icon2 .drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #15824B;
+  padding: 60px 0;
+}
+
+.icons .icon-section1 .icon2 input {
+  opacity: 0;
+  width: 5px;
+}
+
+.icons .icon-section1 .send .send-btn {
+  background: #3399DB;
+  color: #fff;
+  border-radius: 8px;
+  margin-left: 20px;
+  border: none;
+  width: 100px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+
+
+.myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+.myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #04AA6D;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */

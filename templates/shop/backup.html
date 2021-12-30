@@ -1,0 +1,716 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.css' %}">
+
+    <!--custom css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/scss/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/scss/responsive.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/scss/new-style.css' %}">
+    <!--data table-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/data-table.css' %}"/>
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;800&display=swap" rel="stylesheet">
+
+    <!--icon font-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <title>MDM</title>
+  </head>
+  <body>
+      <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-theme py-0">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fs-4 ml-2" href="#">Enterprise Device Management</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mx-auto mb-2 mb-md-0">
+              <!--<li class="nav-item">
+                <a class="nav-link" href="/index">Dashboard</a>
+              </li>-->
+                {% if userRole == "1"  %}
+              <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management</a>
+              </li>
+                {% elif userRole == "2"  %}
+
+              <li class="nav-item active">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+
+              </li>
+                {% elif userRole == "3"  %}
+              <li class="nav-item active">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+                {% elif userRole == "1,2"  %}
+                <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement" >User Management</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+
+              </li>
+                {% elif userRole == "1,2,3"  %}
+                <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+
+              </li>
+              <li class="nav-item  active">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+
+                {% elif userRole == "2,3,4"  %}
+
+              <li class="nav-item ">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+
+              </li>
+              <li class="nav-item  active">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+                <!--<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>-->
+                {% elif userRole == "1,2,4"  %}
+                <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+                <!--<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>-->
+                {% elif userRole == "1,3,4"  %}
+                <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management</a>
+              </li>
+
+              <li class="nav-item active ">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>-->
+                {% elif userRole == "1,4"  %}
+                <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management</a>
+                <!--<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>-->
+              </li>
+                {% elif userRole == "2,4"  %}
+                <li class="nav-item active">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>-->
+                {% elif userRole == "2,3"  %}
+              <li class="nav-item active">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+              </li>
+
+              <li class="nav-item  ">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+                {% elif userRole == "3,4"  %}
+
+
+              <li class="nav-item  ">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+                {% elif userRole == "1,2,3,4" or userRole != "admin" %}
+              <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management </a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+              </li>
+
+              <li class="nav-item active ">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>-->
+
+              <!--<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>-->
+                {% endif %}
+            </ul>
+            <div class="d-flex align-items-center nav-right">
+<!--              <span class="text-white p-2">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">-->
+<!--                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>-->
+<!--                </svg>-->
+<!--              </span>-->
+<!--              <span class="text-white p-2 position-relative">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">-->
+<!--                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>-->
+<!--                </svg>-->
+<!--                <span class="badge bg-danger rounded-circle notification">2</span>-->
+<!--              </span>-->
+<!--              <span class="text-white p-2">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">-->
+<!--                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--                  <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>-->
+<!--                </svg>-->
+<!--              </span>-->
+            <span>
+
+                <div class="dropdown">
+                    <a href="#" class="dropbtn" onclick="myFunction()" ><i class="fa fa-user-circle-o dropbtn" style="color:#fff; font-size:25px"></i></a>
+
+                  <div id="myDropdown" class="dropdown-content">
+                    <a href="/logout">Logout</a>
+
+                    <a href="#">{{ user.get_username }}</a>
+                  </div>
+                </div>
+
+              </span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+   <!-- <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-theme py-0">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fs-4 ml-2" href="#">Enterprise Device Management</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mx-auto mb-2 mb-md-0">
+              &lt;!&ndash;<li class="nav-item">
+                <a class="nav-link" href="/index">Dashboard</a>
+              </li>&ndash;&gt;
+            {% if userRole == "1" %}
+              <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management</a>
+              </li>
+            {% elif userRole == "2" %}
+              <li class="nav-item">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+              </li>
+             {% elif userRole == "3" %}
+
+              <li class="nav-item active ">
+                <a class="nav-link" href="/eposstore">EPOS Store </a>
+              </li>
+                 {% elif userRole == "4" or userRole != "admin" %}
+              <li class="nav-item ">
+                <a class="nav-link " href="/usermanagement">User Management</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="/devicemanagement">Device Management</a>
+              </li>
+
+              <li class="nav-item  active">
+                <a class="nav-link" href="/eposstore">EPOS Store</a>
+              </li>
+              &lt;!&ndash;<li class="nav-item">
+                <a class="nav-link" href="/policy">Policy</a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>&ndash;&gt;
+            {% endif %}
+            </ul>
+
+            <div class="d-flex align-items-center nav-right">
+              &lt;!&ndash;<span class="text-white p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </span>
+              <span class="text-white p-2 position-relative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                </svg>
+                <span class="badge bg-danger rounded-circle notification">2</span>
+              </span>
+              <span class="text-white p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                </svg>
+              </span>&ndash;&gt;
+                <div class="dropdown">
+                    <a href="#" class="dropbtn" onclick="myFunction()" ><i class="fa fa-user-circle-o dropbtn" style="color:#fff; font-size:25px"></i></a>
+
+                  <div id="myDropdown" class="dropdown-content">
+                    <a href="/logout">Logout</a>
+
+                    <a href="#">{{ user.get_username }}</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>-->
+    <section class="main-head">
+      <div class="container-fluid">
+          <div class="heading">
+              <h1 class="text-theme font-weight-bold" >EPOS Store</h1>
+          </div>
+          <div class="tabs-content">
+              <div id="tab-1" class="tab-content current">
+                   <div class="search-box">
+                   <div class="row">
+                  <div class="col-md-5">
+                      <div class="input-group">
+                          <input type="text" class="form-control product-search" id="input_search" placeholder="Search Epos Applications..." aria-label="Recipient's username" >
+                          <div class="input-group-append">
+                              <button class="btn btn-outline-light" type="button"><i class="fa fa-search"></i></button>
+                          </div>
+                      </div>
+                </div>
+                   <!--<div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="input-group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" class="form-control " id="input_search" placeholder="Search User..." >
+                        </div>
+                    </form>
+                  </div>-->
+                  <div class="col-md-7">
+                    <div class="text-right">
+                      <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#newApp">
+                        <img src="{% static 'assets/img/create-app.svg' %}">
+                        Create New App
+                    </button>
+                    </div>
+                  </div>
+                </div>
+               </div>
+            <div class="table-sec" id="app_table_data">
+              <table id="exampleCheck1" class="table table-striped" style="width:100%">
+                  <thead>
+                      <tr>
+                          <th>
+                              <div class="form-group form-check  ">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                              </div>
+                          </th>
+                          <th >S.No</th>
+                          <th >Date</th>
+                          <th >App Name</th>
+                          <th >App Description</th>
+                          <th >Version</th>
+                          <th >Device Connected</th>
+                          <th >File</th>
+                          <th >Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in eposdata %}
+                      <tr>
+                          <td>
+                              <div class="form-group form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                              </div>
+                          </td>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ i.date }}</td>
+                          <td>{{ i.appname }}</td>
+                          <td>{{ i.appdescription }}</td>
+                          <td>{{ i.appversion }}</td>
+
+                          <td>{{ i.deviceconnected }}</td>
+
+                          <td><a href="{{ i.appfile.url }}" download="{{ i.appfile.url }}">{{ i.appfile}}</a></td>
+                          <td>
+                            <!--<a href="/editeposstore/?id={{ i.id }}" class="text-decoration-none btn btn-sm btn-light" type="button">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                              </svg>
+                            </a>-->
+                              <a  type="button" id="{{ i.id }}" class="test" style="background: transparent;border: none;">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" style="filter:invert(1);">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                              </svg>
+                              </a>
+
+                            <a href="/eposdelete/?id={{ i.id }}" class="text-decoration-none btn btn-sm btn-light text-danger" type="button">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                              </svg>
+                            </a>
+                          </td>
+                      </tr>
+                  {% endfor %}
+
+                  </tbody>
+              </table>
+            </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+     <!--New Enroll Modal-->
+    <div class="modal fade newEnroll" id="newApp" tabindex="-1" aria-labelledby="newAppLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-theme text-white">
+                    <h5 class="modal-title" id="newEnrollLabel">
+                        <img src="{% static 'assets/img/create-app.svg' %}" width="18px"/>
+                        Create New App
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="form" action="/uploadepos/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="appname">App Name</label>
+                          <input type="text" name="appname" class="form-control" id="appname" placeholder="Application" required>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="appversion">App Version</label>
+                         <input type="text" name="appversion" class="form-control" id="appversion" placeholder="12.90.09" required>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="appdescription">App Description</label>
+                            <textarea class="form-control" name="appdescription" id="appdescription" rows="4" placeholder="Local, National, &amp; Global Daily Weather Forecast" required></textarea>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="appfile">Browse and Upload</label>
+                                <input type="file" name="appfile" id="appfile" class="form-control-file" required>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="appfile">Browse and Upload</label>
+                                    <input type="file" name="appfile" id="appfile" class="input-file">
+                                    <label for="appfile" class="btn btn-tertiary js-labelFile">
+                                        <i class="icon fa fa-check"></i>
+                                        <span class="js-fileName">Choose a file</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                            <input type="submit" name="submit" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--update epos appliaction-->
+    <!--<div class="modal fade newEnroll" id="newAp" tabindex="-1" aria-labelledby="newAppLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-theme text-white">
+                    <h5 class="modal-title" id="newEnrollLabel">
+                        <img src="{% static 'assets/img/create-app.svg' %}" width="18px"/>
+                        Create New App
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="form"  class="btn btn-inline-secondary" action="/UpdateEposStore/?id={{ eposs.id }}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="appname">App Name</label>
+                          <input type="text" name="appname" class="form-control" id="appname" placeholder="{{ eposs.appname }}">
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="appversion">App Version</label>
+                         <input type="text" name="appversion" class="form-control" id="appversion" placeholder="{{ eposs.appversion }}">
+                          </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="appdescription">App Description</label>
+                            <textarea class="form-control" name="appdescription" id="appdescription" rows="4" placeholder="{{ eposs.appdescription }}"></textarea>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="appfile">Browse and Upload</label>
+
+                              <input type="file" name="appfile" id="appfile" class="form-control-file">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                            <input type="submit" name="submit" class="btn btn-primary">
+                        </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+<div class="modal fade newEnroll" id="eposNewApp1" tabindex="-1" aria-labelledby="newAppLabel" aria-modal="true" role="dialog" style="display: none;padding-left: 17px;">
+<!--<div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-theme text-white">
+                <h5 class="modal-title" id="newEnrollLabel">
+                    <img src="{% static 'assets/img/create-app.svg' %}" width="18px"/>
+                     Create New App
+                </h5>
+                <button type="button" class="close hello text-white" id="closeupdatepopup" data-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true" onclick="eposNewApp1_close()">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="form"  class="btn btn-inline-secondary" action="/UpdateEposStore/?id={{ epost.id }}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="appname">App Name</label>
+                          <input type="text" name="appname" class="form-control" id="appname" value="{{ epost.appname }}">
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="appversion">App Version</label>
+                         <input type="text" name="appversion" class="form-control" id="appversion"  value="{{ epost.appversion }}">
+                          </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="appdescription">App Description</label>
+                            <textarea class="form-control" name="appdescription" id="appdescription" rows="4" placeholder="{{ epost.appdescription }}"></textarea>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="appfile">Browse and Upload</label>
+                                    <input type="file" name="appfile" id="appfile" class="input-file">
+                                    <label for="appfile" class="btn btn-tertiary js-labelFile">
+                                        <i class="icon fa fa-check"></i>
+                                        <span class="js-fileName">Choose a file</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                            <input type="submit" name="submit" class="btn btn-primary">
+                        </div>
+                </form>
+            </div>
+        </div>
+        </div>-->
+    </div>
+<!-- <div id="display_app_code" >
+</div>-->
+
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+
+
+
+    <script src="{% static 'assets/js/custom.js' %}"></script>    <!-- Option 1: Bootstrap Bundle with Popper -->
+<!--    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>-->
+<!--
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/HostFile.js' %}"></script>-->
+    <script>
+
+        $(".test").click(function(){
+        var notes_id = $(this).attr("id")
+        $.ajax({
+        url:"/editEposStore",
+        method:"POST",
+        data:{
+        "id":notes_id
+        },
+        success:function(data){
+        alert(data['html_form']);
+        //$("#eposNewApp1").modal('show');
+        $("#eposNewApp1").html(data['html_form']);
+       // $("#eposNewApp1").html(data['html_form'])
+        }
+        })
+        })
+    </script>
+    <!--<script>
+       function app_edit_submit(){
+       var formdata = new FormData();
+       formdata.apped("app_id",document.getElementById("app_id").value);
+       formdata.append("appname",document.getElementById("appname").value);
+       formdata.append("appversion",document.getElementById("appversion").value);
+       formdata.append("appdescription",document.getElementById("appdescription").value);
+       formdata.append("appfile",document.getElementById("appfile").files[0]);
+       console.log(formdata)
+       var xhr = new XMLHttpRequest();
+       xhr.open("POST","http://127.0.0.1:8000/editEposStore",true);
+       xhr.send(formdata);
+
+
+       }
+
+    </script>-->
+    <script type="text/javascript">
+      function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }
+      function myFunction2() {
+        var x = document.getElementById("myDIV2");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }
+      function myFunction3() {
+        var x = document.getElementById("myDIV3");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }
+    </script>
+
+  <script>
+      $(document).ready(function(){
+
+         $("#input_search").bind("keyup", function(e) {
+         var input_data = this.value;
+            $.ajax ({
+              url: "/find_application_search_list",
+              data: {
+                'search':input_data
+               },
+              type: 'GET',
+              dataType: 'json',
+              success: function (data) {
+
+                if (data.form_is_valid) {
+                  $("#app_table_data").html(data.html_app_list);
+
+                }
+              }
+            });
+            return false;
+      });
+
+      });
+      function eposNewApp1_close(){
+      alert('hh');
+      $("#eposNewApp1").modal('hide');
+      }
+    </script>
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+</script>
+
+<!--  <script>
+      (function(){
+      let newEnroll = document.querySelector('.newEnroll');
+      let closeupdatepopup = document.querySelector('#closeupdatepopup');
+      console.log(closeupdatepopup)
+      closeupdatepopup.addEventListener('click',()=>{
+
+      newEnroll.classList.remove('show');
+      newEnroll.classList.remove('fade');
+      })
+      })()
+  </script>-->
+  </body>
+</html>
+
